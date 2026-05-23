@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culebrita del Ceviche</title>
+
+  <style>
+    body{
+      margin:0;
+      background:#143d21;
+      color:white;
+      font-family:Arial, sans-serif;
+      text-align:center;
+    }
+
+    h1{
+      margin-top:20px;
+    }
+
+    canvas{
+      background:#f5f4ef;
+      border:5px solid #cfbc63;
+      border-radius:15px;
+      margin-top:15px;
+    }
+
+    .btn-volver{
+      display:inline-block;
+      margin-top:15px;
+      background:#6aa320;
+      color:white;
+      padding:10px 20px;
+      border-radius:20px;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🐍 Culebrita persigue el ceviche 🍽️</h1>
+  <p>Usa las flechas del teclado para moverte</p>
+  <p>Puntaje: <span id="puntaje">0</span></p>
+
+  <canvas id="game" width="400" height="400"></canvas>
+
+  <br>
+  <a class="btn-volver" href="index.html">Volver al inicio</a>
+
+  <script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    const puntajeTexto = document.getElementById("puntaje");
+
+    const tamaño = 20;
+
+    let snake = [
+      {x: 200, y: 200}
+    ];
+
+    let ceviche = {
+      x: 100,
+      y: 100
+    };
+
+    let dx = tamaño;
+    let dy = 0;
+    let puntaje = 0;
+
+    document.addEventListener("keydown", cambiarDireccion);
+
+    function cambiarDireccion(e){
+      if(e.key === "ArrowUp" && dy === 0){
+        dx = 0;
+        dy = -tamaño;
+      }
+
+      if(e.key === "ArrowDown" && dy === 0){
+        dx = 0;
+        dy = tamaño;
+      }
+
+      if(e.key === "ArrowLeft" && dx === 0){
+        dx = -tamaño;
+        dy = 0;
+      }
+
+      if(e.key === "ArrowRight" && dx === 0){
+        dx = tamaño;
+        dy = 0;
+      }
+    }
+
+    function dibujarCeviche(){
+      ctx.font = "22px Arial";
+      ctx.fillText("🍽️", ceviche.x - 2, ceviche.y + 18);
+    }
+
+    function moverCeviche(){
+      ceviche.x = Math.floor(Math.random() * 20) * tamaño;
+      ceviche.y = Math.floor(Math.random() * 20) * tamaño;
+    }
+
+    function dibujar(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const cabeza = {
+        x: snake[0].x + dx,
+        y: snake[0].y + dy
+      };
+
+      // Si sale del borde, aparece por el otro lado
+      if(cabeza.x >= canvas.width) cabeza.x = 0;
+      if(cabeza.x < 0) cabeza.x = canvas.width - tamaño;
+      if(cabeza.y >= canvas.height) cabeza.y = 0;
+      if(cabeza.y < 0) cabeza.y = canvas.height - tamaño;
+
+      snake.unshift(cabeza);
+
+      if(cabeza.x === ceviche.x && cabeza.y === ceviche.y){
+        puntaje++;
+        puntajeTexto.textContent = puntaje;
+        moverCeviche();
+      }else{
+        snake.pop();
+      }
+
+      // Dibujar culebrita
+      ctx.fillStyle = "#4f7d16";
+      snake.forEach((parte, index) => {
+        ctx.fillStyle = index === 0 ? "#1b7c44" : "#6aa320";
+        ctx.fillRect(parte.x, parte.y, tamaño, tamaño);
+        ctx.strokeStyle = "#143d21";
+        ctx.strokeRect(parte.x, parte.y, tamaño, tamaño);
+      });
+
+      dibujarCeviche();
+    }
+
+    setInterval(dibujar, 120);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gastronomía Peruana</title>
+  <meta name="description" content="Sitio web sobre gastronomía peruana con platos típicos de la costa, sierra y selva del Perú.">
+  <link href="https://fonts.googleapis.com/css2?family=Jeju+Hallasan&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <nav class="nav">
+    <h1>GASTRONOMÍA <span>PERUANA</span></h1>
+     <div class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="#sabores">Menú</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#actividad">Actividad</a>
+    </div>
+    <div class="idioma">
+<button onclick="cambiarIdioma('es')" aria-label="Cambiar idioma a español">ES</button>
+<button onclick="cambiarIdioma('en')" aria-label="Cambiar idioma a inglés">EN</button>
+</div>
+<button class="btn-audio" onclick="leerPagina()" aria-label="Escuchar el contenido de la página">
+  Escuchar página
+</button>
+
+<button class="btn-audio-stop" onclick="detenerLectura()" aria-label="Detener lectura de la página">
+  ⏹ Detener
+</button>
+  </nav>
+
+  <div class="hero-text">
+    <h2>COMIDA PERUANA</h2>
+    <p id="mensaje-dinamico"></p>
+    <p>
+      Platos tradicionales como el ceviche, la pachamanca y el ají de gallina
+      reflejan la diversidad histórica del Perú.
+    </p>
+
+    <a href="#sabores" class="btn-link">Reseña de platos típicos</a>
+    <a href="#contacto" class="btn-link">Portafolio</a>
+  </div>
+</header>
+<section class="slider-section">
+  <h2>PLATOS DESTACADOS</h2>
+
+  <div class="slider">
+    <button class="slider-btn" id="prevBtn">❮</button>
+
+    <img id="sliderImage" src="imagenes/imagen1.png" alt="Plato peruano">
+
+    <button class="slider-btn" id="nextBtn">❯</button>
+  </div>
+</section>
+
+<section class="sabores" id="sabores">
+  <h2>SABORES DEL PERÚ</h2>
+
+  <div class="cards netflix-cards">
+
+  <div class="flip-card" onclick="mostrarInfo('costa')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="imagenes/imagen1.png" alt="Costa peruana">
+        <h3>SABOR DE LA COSTA</h3>
+      </div>
+      <div class="flip-back">
+        <h3>Costa</h3>
+        <p>Ceviche, arroz con mariscos, causa limeña y tiradito.</p>
+        <a href="costa.html">Ver platos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="mostrarInfo('sierra')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="imagenes/imagen2.png" alt="Sierra peruana">
+        <h3>SABOR DE LA SIERRA</h3>
+      </div>
+      <div class="flip-back">
+        <h3>Sierra</h3>
+        <p>Pachamanca, cuy asado, papa a la huancaína y olluco.</p>
+        <a href="sierra.html">Ver platos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="mostrarInfo('selva')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="imagenes/imagen3.png" alt="Sancocho de gallina">
+        <h3>SABOR DE LA SELVA</h3>
+      </div>
+      <div class="flip-back">
+        <h3>Selva</h3>
+        <p>Sancocho de gallina, juane, tacacho con cecina e inchicapi.</p>
+        <a href="#">Ver más</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p id="info-dinamica"></p>
+</section>
+<section class="actividad" id="actividad">
+  <h2>Aprende jugando</h2>
+
+  <div class="actividad-card">
+    <h3>Pregunta interactiva</h3>
+    <p>¿De qué región es la pachamanca?</p>
+
+    <button onclick="verificarRespuesta('incorrecta')">Costa</button>
+    <button onclick="verificarRespuesta('correcta')">Sierra</button>
+    <button onclick="verificarRespuesta('incorrecta')">Selva</button>
+
+    <p id="respuesta-quiz"></p>
+  </div>
+
+  <div class="actividad-card">
+
+    <h3>Relación imagen-palabra</h3>
+
+    <img src="imagenes/imagen11.png"
+    alt="Pachamanca"
+    class="img-actividad">
+
+    <p>Selecciona el nombre correcto del plato:</p>
+
+    <button onclick="respuestaIncorrecta()">
+        Ceviche
+    </button>
+
+    <button onclick="respuestaCorrecta()">
+        Pachamanca
+    </button>
+
+    <button onclick="respuestaIncorrecta()">
+        Lomo Saltado
+    </button>
+
+    <p id="mensaje"></p>
+
+    <div id="juego-container" style="display:none;">
+
+        <h3>🎮 ¡Ganaste! Juega la culebrita</h3>
+
+        <a href="juego.html">
+
+            <button>
+                Ir al juego
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+  <div class="actividad-card">
+    <h3>Te queremos conocer</h3>
+    <p>Selecciona tu region favorita:</p>
+
+    <button onclick="ordenRutina('correcta')">Sierra</button>
+    <button onclick="ordenRutina('incorrecta')">Costa</button>
+    <button onclick="ordenRutina('incorrecta')">Selva</button>
+
+    <p id="respuesta-receta"></p>
+  </div>
+</section>
+<section class="testimonios">
+  <h2>Clientes satisfechos con nuestros sabores</h2>
+
+  <div class="clientes">
+    <div class="cliente">
+      <img src="imagenes/imagen4.png" alt="Luciana">
+      <h3>Luciana</h3>
+      <p>La cocina peruana cuenta historias a través de sus sabores, mostrando la cultura y la diversidad de sus regiones.</p>
+    </div>
+
+    <div class="cliente">
+      <img src="imagenes/imagen5.png" alt="Mariano">
+      <h3>Mariano</h3>
+      <p>El ceviche peruano es uno de los mejores platos del mundo, es fresco, simple y absolutamente perfecto.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <h2>Pongámonos en contacto</h2>
+
+  <form id="formulario">
+    <div class="form-row">
+
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" placeholder="Nombre" required>
+      </div>
+
+      <div class="campo">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" type="text" placeholder="Apellido" required>
+      </div>
+
+    </div>
+
+    <div class="campo">
+      <label for="correo">Correo</label>
+      <input id="correo" type="email" placeholder="Correo" required>
+    </div>
+
+    <div class="campo">
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" placeholder="Mensaje" required></textarea>
+    </div>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- mensaje de éxito -->
+  <p id="mensaje-exito" style="display:none; margin-top:10px;">
+     Mensaje enviado correctamente
+  </p>
+
+</section>
+<script>
+function leerPagina(){
+
+let texto = document.body.innerText;
+
+let voz = new SpeechSynthesisUtterance(texto);
+
+voz.lang = "es-ES";
+
+speechSynthesis.speak(voz);
+
+}
+function detenerLectura(){
+speechSynthesis.cancel();
+}
+</script>
+<script>
+document.getElementById("formulario").addEventListener("submit", function(e){
+  e.preventDefault(); // evita que recargue
+
+  // obtener valores
+  let nombre = document.getElementById("nombre").value;
+  let correo = document.getElementById("correo").value;
+
+  // mostrar en consola (simula envío)
+  console.log("Nombre:", nombre);
+  console.log("Correo:", correo);
+
+  // mostrar mensaje
+  document.getElementById("mensaje-exito").style.display = "block";
+
+  // limpiar formulario
+  this.reset();
+});
+function leerPagina() {
+  let texto = document.body.innerText;
+  let voz = new SpeechSynthesisUtterance(texto);
+  voz.lang = "es-ES";
+  speechSynthesis.speak(voz);
+}
+
+function detenerLectura() {
+  speechSynthesis.cancel();
+}
+
+function cambiarIdioma(idioma) {
+  console.log("Idioma seleccionado:", idioma);
+}
+</script>
+<script src="js/script.js"></script>
+</body>
+</html>
